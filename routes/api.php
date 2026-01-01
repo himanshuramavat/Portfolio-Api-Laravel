@@ -15,5 +15,15 @@ use App\Http\Controllers\Api\V1\ProfileController;
 */
 
 Route::prefix('v1')->group(function () {
+    // Base info route to avoid 404 on `/api/v1`
+    Route::get('/', function () {
+        return response()->json([
+            'message' => 'Portfolio API — v1',
+            'endpoints' => [
+                'GET /api/v1/profile'
+            ]
+        ]);
+    });
+
     Route::get('profile', [ProfileController::class, 'index']);
 });
